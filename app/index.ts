@@ -1,6 +1,7 @@
 import express from 'express';
 import PG from "pg";
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -8,6 +9,7 @@ var app = express();
 var client = new PG.Client(process.env.CONNECTION_STRING);
 
 app.use(express.json());
+app.use(cors());
 
 app.post("/criar", async (req, res) => {
     try {
