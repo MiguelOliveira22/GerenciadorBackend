@@ -1,0 +1,1 @@
+ALTER DATABASE GerenciadorBackend SET TIMEZONE TO 'America/Sao_Paulo';

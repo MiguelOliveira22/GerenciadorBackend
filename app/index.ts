@@ -1,7 +1,6 @@
 import express from 'express';
 import PG from "pg";
 import dotenv from 'dotenv';
-import { Status } from './status';
 
 dotenv.config();
 
@@ -12,31 +11,69 @@ app.use(express.json());
 
 app.post("/criar", async (req, res) => {
     try {
-        await client.query("INSERT INTO Tarefas (Titulo, Descricao, StatusTarefa, DataDeCriacao) VALUES ($1::text, $2::text, $3::int, Now())", [req.body.titulo, req.body.descricao, req.body.status]);
-        res.status(201).send();
+        const linesChanged = await client.query("INSERT INTO Tarefas (Titulo, Descricao, StatusTarefa, DataDeCriacao) " +
+            "VALUES ($1::text, $2::text, $3::int, Now())", [req.body.titulo, req.body.descricao, req.body.status]
+        );
+        
+        if(linesChanged.rowCount != null && linesChanged.rowCount > 0)
+            res.status(201).send();
+        else
+            res.status(404).send();
     }
     catch (e) {
-        console.log(e);
         res.status(400).send();
     }
 });
 
-app.get("/listar/:id/:width", async (req, res) => {
-    const resp = await client.query("SELECT * FROM Tarefas");
+app.get("/listar/:offset/:width", async (req, res) => {
+    const resp = await client.query("SELECT T.Id, T.Titulo, T.Descricao, S.StatusNome, T.DataDeCriacao " +
+        "FROM Tarefas AS T INNER JOIN StatusPossiveis AS S ON T.StatusTarefa = S.StatusId " +
+        "LIMIT $1::int OFFSET $2::int;", [req.params.width, req.params.offset]
+    );
 
     res.send(resp.rows);
 });
 
-app.put("/atualizar/:id", (req, res) => {
-    res.status(200);
+app.get("/status/", async (req, res) => {
+    const resp = await client.query("SELECT * FROM StatusPossiveis");
+
+    res.send(resp.rows);
 });
 
-app.delete("/deletar/:id", (req, res) => {
-    res.status(204);
+app.put("/atualizar/:id", async (req, res) => {
+    try {
+        const linesChanged = await client.query("UPDATE Tarefas SET Titulo = $1::text, Descricao = $2::text, " +
+            "StatusTarefa = $3::int WHERE Id = $4::int",
+            [req.body.titulo, req.body.descricao, req.body.status, req.params.id]
+        );
+        
+        if(linesChanged.rowCount != null && linesChanged.rowCount > 0)
+            res.status(200).send();
+        else
+            res.status(404).send();
+    }
+    catch (e) {
+        res.status(400).send();
+    }
 });
 
-app.listen(3300, async () => {
+app.delete("/deletar/:id", async (req, res) => {
+    try {
+        const linesChanged = await client.query("DELETE FROM Tarefas WHERE Id = $1::int", [req.params.id]);
+
+        if(linesChanged.rowCount != null && linesChanged.rowCount > 0)
+            res.status(204).send();
+        else
+            res.status(404).send();
+    }
+    catch (e) {
+        res.status(404).send();
+    }
+});
+
+app.listen(process.env.PORT, async () => {
     await client.connect();
-
-    console.log("Iniciado ");
+    
+    process.env.TZ = process.env.TIMEZONE;
+    console.log(`Iniciado na porta: ${process.env.PORT}`);
 });

@@ -1,7 +1,16 @@
+DROP TABLE IF EXISTS Tarefas;
+DROP TABLE IF EXISTS StatusPossiveis;
+
+CREATE TABLE StatusPossiveis (
+    StatusId INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    StatusNome VARCHAR(15) NOT NULL
+);
+
 CREATE TABLE Tarefas (
     Id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    Titulo VARCHAR(15) NOT NULL,
-    Descricao VARCHAR(30) NOT NULL,
+    Titulo VARCHAR(30) NOT NULL,
+    Descricao VARCHAR(200) NOT NULL,
     StatusTarefa INT NOT NULL,
-    DataDeCriacao TIMESTAMP NOT NULL
-)
+    DataDeCriacao TIMESTAMP NOT NULL,
+    FOREIGN KEY (StatusTarefa) REFERENCES StatusPossiveis(StatusId)
+);

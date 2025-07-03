@@ -4,7 +4,9 @@
   "description": "Projeto Entrevista",
   "main": "index.ts",
   "scripts": {
-    "build": "npm i"
+    "build": "npm i",
+    "configure": "npx tsx migrate.ts updateDatabase.sql createTable.sql addStatus.sql",
+    "start": "npx tsx index.ts"
   },
   "repository": {
     "type": "git",
