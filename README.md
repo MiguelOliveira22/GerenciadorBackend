@@ -67,7 +67,6 @@ POST /criar
 | `body`      | `object`   | **Obrigatório**. Objeto a ser adicionado no banco de dados. Modelo abaixo. |
 
 ```json
-// Modelo Do Body:
 {
     "titulo": string(30-max),
     "descricao": string(200-max),
@@ -87,7 +86,6 @@ PUT /atualizar
 | `body`      | `object`   | **Obrigatório**. Objeto a ser adicionado no banco de dados. Modelo abaixo. |
 
 ```json
-Modelo Do Body:
 {
     "titulo": string(30-max),
     "descricao": string(200-max),
