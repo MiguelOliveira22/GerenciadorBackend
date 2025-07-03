@@ -4,7 +4,7 @@
   "description": "Projeto Entrevista",
   "main": "index.ts",
   "scripts": {
-    "build": "npm i",
+    "install-dependencies": "npm i",
     "configure": "npx tsx migrate.ts updateDatabase.sql createTable.sql addStatus.sql",
     "start": "npx tsx index.ts"
   },
