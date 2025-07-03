@@ -8,6 +8,8 @@ Para começar, abra a pasta app do projeto a partir de sua raiz com o comando ab
 cd app
 ```
 
+#### O projeto depende diretamente do uso do mecanismo de banco de dados PostgreSQL. Portanto, instale-o de acordo com a documentação encontrada no site da desenvolvedora. [PostgreSQL Download](https://www.postgresql.org/download/).
+
 #### Depois instale as dependências abaixo por meio do NPM ou seu gerenciador de pacotes de preferência:
 - Typescript
 - TSX
@@ -20,24 +22,33 @@ cd app
 - @Types/PG
 - @Types/Cors
 
-O comando usado para instalar todas elas é esse:
+O script usado para instalar todas elas é esse:
 ```bash
 npm run install-dependencies
 ```
----
+
 Após isso, lembre-se de abrir a pasta sql e confirmar que os scripts inseridos lá dentro não irão conflitar com a sua arquitetura de banco de dados. Se não houverem conflitos, execute o comando abaixo:
 ```bash
 npm run configure
 ```
+
 Já se houverem erros, eu recomendo executar cada script não conflitante com o comando abaixo:
 ```bash
 npx tsx migrate.ts <nomeArquivoSql1> [nomeArquivoSql2] ...
 ```
----
-Por ultimo, para poder executar a API, chame o script abaixo:
+
+Depois, para poder executar a API, crie um arquivo .env como no modelo abaixo:
+```dotenv
+CONNECTION_STRING=<CONNECTION STRING DO POSTGRESQL>
+PORT=<PORTA DE PREFERÊNCIA DO USUÁRIO>
+TIMEZONE=<TIMEZONE DO USUÁRIO>
+```
+
+Por fim, chame o script abaixo:
 ```bash
 npm run start
 ```
+
 ## Endpoints da API
 
 #### Retorna um recorte das tarefas (paginação)
@@ -77,13 +88,13 @@ POST /criar
 #### Adiciona uma tarefa ao banco de dados
 
 ```http
-PUT /atualizar
+PUT /atualizar/:id
 ```
 
-| Parâmetro   | Tipo       | Descrição                                                                  |
-| :---------- | :--------- | :------------------------------------------------------------------------- |
-| `id`        | `string`   | **Obrigatório**. O ID do item que você quer atualizar                      |
-| `body`      | `object`   | **Obrigatório**. Objeto a ser adicionado no banco de dados. Modelo abaixo. |
+| Parâmetro   | Tipo       | Descrição                                                                           |
+| :---------- | :--------- | :---------------------------------------------------------------------------------- |
+| `id`        | `string`   | **Obrigatório**. O ID do item que você quer atualizar                               |
+| `body`      | `object`   | **Obrigatório**. Objeto a ser trocado no banco de dados com o do ID. Modelo abaixo. |
 
 ```json
 {
