@@ -29,8 +29,8 @@ app.post("/criar", async (req, res) => {
 
 app.get("/listar/:offset/:width", async (req, res) => {
     const resp = await client.query("SELECT T.Id, T.Titulo, T.Descricao, S.StatusNome, T.DataDeCriacao " +
-        "FROM Tarefas AS T INNER JOIN StatusPossiveis AS S ON T.StatusTarefa = S.StatusId " +
-        "LIMIT $1::int OFFSET $2::int ORDER BY T.Id;", [req.params.width, req.params.offset]
+        "FROM Tarefas AS T INNER JOIN StatusPossiveis AS S ON T.StatusTarefa = S.StatusId ORDER BY T.Id " +
+        "LIMIT $1::int OFFSET $2::int;", [req.params.width, req.params.offset]
     );
 
     res.send(resp.rows);
