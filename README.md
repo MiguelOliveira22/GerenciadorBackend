@@ -25,7 +25,6 @@ O comando usado para instalar todas elas é esse:
 npm run install-dependencies
 ```
 ---
-\
 Após isso, lembre-se de abrir a pasta sql e confirmar que os scripts inseridos lá dentro não irão conflitar com a sua arquitetura de banco de dados. Se não houverem conflitos, execute o comando abaixo:
 ```bash
 npm run configure
@@ -35,7 +34,6 @@ Já se houverem erros, eu recomendo executar cada script não conflitante com o 
 npx tsx migrate.ts <nomeArquivoSql1> [nomeArquivoSql2] ...
 ```
 ---
-\
 Por ultimo, para poder executar a API, chame o script abaixo:
 ```bash
 npm run start
@@ -69,7 +67,7 @@ POST /criar
 | `body`      | `object`   | **Obrigatório**. Objeto a ser adicionado no banco de dados. Modelo abaixo. |
 
 ```json
-Modelo Do Body:
+// Modelo Do Body:
 {
     "titulo": string(30-max),
     "descricao": string(200-max),
