@@ -85,7 +85,7 @@ POST /criar
 }
 ```
 
-#### Adiciona uma tarefa ao banco de dados
+#### Atualiza uma tarefa no banco de dados
 
 ```http
 PUT /atualizar/:id
