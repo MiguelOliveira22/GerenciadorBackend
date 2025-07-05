@@ -39,7 +39,25 @@ app.get("/listar/:offset/:width", async (req, res) => {
     catch (e) {
         res.status(400).send();
     }
+});
 
+app.get("/tarefa/:id", async (req, res) => {
+    try{
+        const resp = await client.query("SELECT T.Id, T.Titulo, T.Descricao, S.StatusNome, T.DataDeCriacao " +
+            "FROM Tarefas AS T INNER JOIN StatusPossiveis AS S ON T.StatusTarefa = S.StatusId WHERE T.Id = $1::int;",
+            [req.params.id]
+        );
+
+        if (resp.rowCount != null && resp.rowCount < 1) {
+            res.status(404).send();
+        }
+        else {
+            res.send(resp.rows);
+        }
+    }
+    catch (e) {
+        res.status(400).send();
+    }
 });
 
 app.get("/status/", async (req, res) => {
