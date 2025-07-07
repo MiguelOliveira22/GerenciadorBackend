@@ -13,6 +13,8 @@ app.use(cors());
 
 app.post("/criar", async (req, res) => {
     try {
+        console.log(req.body);
+
         const linesChanged = await client.query("INSERT INTO Tarefas (Titulo, Descricao, StatusTarefa, DataDeCriacao) " +
             "VALUES ($1::text, $2::text, $3::int, Now())", [req.body.titulo, req.body.descricao, req.body.status]
         );
@@ -23,6 +25,7 @@ app.post("/criar", async (req, res) => {
             res.status(404).send();
     }
     catch (e) {
+        console.log(e);
         res.status(400).send();
     }
 });
@@ -33,6 +36,19 @@ app.get("/listar/:offset/:width", async (req, res) => {
             "FROM Tarefas AS T INNER JOIN StatusPossiveis AS S ON T.StatusTarefa = S.StatusId ORDER BY T.Id " +
             "LIMIT $1::int OFFSET $2::int;", [req.params.width, req.params.offset]
         );
+
+        res.send(resp.rows);
+    }
+    catch (e) {
+        res.status(400).send();
+    }
+});
+
+app.get("/tarefas", async (req, res) => {
+    try{
+        const resp = await client.query("SELECT COUNT(*) FROM Tarefas");
+
+        console.log(resp.rows)
 
         res.send(resp.rows);
     }
@@ -97,7 +113,7 @@ app.delete("/deletar/:id", async (req, res) => {
     }
 });
 
-app.listen(process.env.PORT, async () => {
+app.listen(Number.parseInt(process.env.PORT ? process.env.PORT : "3300"), "192.168.1.70", async () => {
     await client.connect();
     
     process.env.TZ = process.env.TIMEZONE;
