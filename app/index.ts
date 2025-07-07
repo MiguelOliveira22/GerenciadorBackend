@@ -113,7 +113,7 @@ app.delete("/deletar/:id", async (req, res) => {
     }
 });
 
-app.listen(Number.parseInt(process.env.PORT ? process.env.PORT : "3300"), "192.168.1.70", async () => {
+app.listen(process.env.PORT, async () => {
     await client.connect();
     
     process.env.TZ = process.env.TIMEZONE;
