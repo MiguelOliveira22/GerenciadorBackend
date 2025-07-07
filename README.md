@@ -62,10 +62,26 @@ GET /listar/:offset/:width
 | `offset`    | `int`      | **Obrigatório**. Começa a listar a partir deste indice de elemento.   |
 | `width`     | `int`      | **Obrigatório**. Quantos elementos listar a patir do indice `offset`. |
 
+#### Retorna uma tarefa de acordo com seu ID
+
+```http
+GET /tarefa/:id
+```
+
+| Parâmetro   | Tipo       | Descrição                                                             |
+| :---------- | :--------- | :-------------------------------------------------------------------- |
+| `id`        | `int`      | **Obrigatório**. Id da tarefa                                         |
+
 #### Retorna todos os Status possíveis
 
 ```http
 GET /status
+```
+
+#### Retorna quantas tarefas foram cadastradas.
+
+```http
+GET /tarefas
 ```
 
 #### Adiciona uma tarefa ao banco de dados
@@ -100,7 +116,7 @@ PUT /atualizar/:id
 {
     "titulo": string(30-max),
     "descricao": string(200-max),
-    "status": int(0, 1 ou 2) -> Relacionado com a tabela do BD
+    "status": int(1, 2 ou 3) -> Relacionado com a tabela do BD
 }
 ```
 
