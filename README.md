@@ -97,7 +97,7 @@ POST /criar
 {
     "titulo": string(30-max),
     "descricao": string(200-max),
-    "status": int(0, 1 ou 2) -> Relacionado com a tabela do BD
+    "status": int(1, 2 ou 3) -> Relacionado com a tabela do BD
 }
 ```
 
