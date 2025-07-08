@@ -131,10 +131,10 @@ DELETE /deletar/:id
 | `id`        | `int`      | **Obrigatório**. O ID do item que você quer apagar |
 
 ## Prints e vídeos da aplicação em funcionamento
-![Captura de tela de 2025-07-07 21-40-18](https://github.com/user-attachments/assets/6f450eeb-8a43-4769-907c-5ec97e936dbc)
-![Captura de tela de 2025-07-07 21-40-09](https://github.com/user-attachments/assets/62a8704a-4d0d-455e-ac06-3565b2d29838)
-![Captura de tela de 2025-07-07 21-39-03](https://github.com/user-attachments/assets/ca70641b-388b-4438-acbc-f7e9e765b515)
-![Captura de tela de 2025-07-07 21-35-38](https://github.com/user-attachments/assets/d3f8a254-6fb0-489d-a194-eda840a0d1d1)
-![Captura de tela de 2025-07-07 21-35-28](https://github.com/user-attachments/assets/f51981cf-ae95-41a5-ae66-ee2e5e2dc404)
-![Captura de tela de 2025-07-07 21-35-16](https://github.com/user-attachments/assets/09fe0ce1-d182-4381-8763-f270b711b413)
 ![Captura de tela de 2025-07-07 21-34-50](https://github.com/user-attachments/assets/b7b3624e-aef5-4619-ade8-c2a345c2dd31)
+![Captura de tela de 2025-07-07 21-35-16](https://github.com/user-attachments/assets/09fe0ce1-d182-4381-8763-f270b711b413)
+![Captura de tela de 2025-07-07 21-35-28](https://github.com/user-attachments/assets/f51981cf-ae95-41a5-ae66-ee2e5e2dc404)
+![Captura de tela de 2025-07-07 21-35-38](https://github.com/user-attachments/assets/d3f8a254-6fb0-489d-a194-eda840a0d1d1)
+![Captura de tela de 2025-07-07 21-39-03](https://github.com/user-attachments/assets/ca70641b-388b-4438-acbc-f7e9e765b515)
+![Captura de tela de 2025-07-07 21-40-09](https://github.com/user-attachments/assets/62a8704a-4d0d-455e-ac06-3565b2d29838)
+![Captura de tela de 2025-07-07 21-40-18](https://github.com/user-attachments/assets/6f450eeb-8a43-4769-907c-5ec97e936dbc)
