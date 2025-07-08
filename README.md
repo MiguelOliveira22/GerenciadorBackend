@@ -131,3 +131,7 @@ DELETE /deletar/:id
 | `id`        | `int`      | **Obrigatório**. O ID do item que você quer apagar |
 
 ## Prints e vídeos da aplicação em funcionamento
+![Captura de tela de 2025-07-07 21-19-11](https://github.com/user-attachments/assets/504af05a-0a04-4467-9c12-946f73c75148)
+![Captura de tela de 2025-07-07 21-18-54](https://github.com/user-attachments/assets/888bee41-0fb2-4ffe-b3e0-0030789f6d6b)
+![Captura de tela de 2025-07-07 21-18-48](https://github.com/user-attachments/assets/2dad3f23-72a6-4b1d-be6b-3f932b034916)
+![Captura de tela de 2025-07-07 21-18-44](https://github.com/user-attachments/assets/0d89f637-8407-49e9-a204-6d5e14321414)
